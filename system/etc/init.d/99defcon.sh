@@ -1,6 +1,6 @@
 #!/system/bin/sh
 
-# disable autosmp 
+# set autosmp as default governor and disable all others
 # This can be re-enabled with echo 1
 echo 1 > /sys/module/autosmp/parameters/enabled
 # enable msm_hotplug
