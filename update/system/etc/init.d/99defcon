@@ -1,5 +1,10 @@
 #!/system/bin/sh
 
+# Turn on Intelli-Thermal
+stop thermald
+stop mpdecision
+echo 1 > /sys/module/msm_thermal/parameters/enabled
+
 # set autosmp as default governor and disable all others
 # This can be re-enabled with echo 1
 echo 1 > /sys/module/autosmp/parameters/enabled
