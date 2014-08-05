@@ -5,13 +5,6 @@ stop thermald
 stop mpdecision
 echo 1 > /sys/module/msm_thermal/parameters/enabled
 
-# MSM_Hotplug options
-if [ -e /sys/module/msm_hotplug/enabled ]; then
-	echo "1" > /sys/module/msm_hotplug/enabled
-	echo "1" > /sys/module/msm_hotplug/suspend_max_cpus
-	echo "1026000" > /sys/module/msm_hotplug/suspend_max_freq
-	echo "[defcon] msm_hotplug enabled" | tee /dev/kmsg
-
 # set autosmp as default governor and disable all others
 # This can be re-enabled with echo 1
 echo 1 > /sys/module/autosmp/parameters/enabled
@@ -19,6 +12,13 @@ echo 1 > /sys/module/autosmp/parameters/enabled
 echo 0 > /sys/module/msm_hotplug/msm_enabled
 # disable intelli_plug
 echo 0 > /sys/module/intelli_plug/parameters/intelli_plug_active
+
+# MSM_Hotplug options
+if [ -e /sys/module/msm_hotplug/enabled ]; then
+	echo "1" > /sys/module/msm_hotplug/enabled
+	echo "1" > /sys/module/msm_hotplug/suspend_max_cpus
+	echo "1026000" > /sys/module/msm_hotplug/suspend_max_freq
+	echo "[defcon] msm_hotplug enabled" | tee /dev/kmsg
 
 # Set TCP westwood
 if [ -e /proc/sys/net/ipv4/tcp_congestion_control ]; then
